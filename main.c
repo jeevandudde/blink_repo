@@ -39,24 +39,39 @@ while(1) {
   switch(state) {
   case LED_low:
     CCR0=45098;
-state = LED_med
+	if (is_int_run) 
+	{
+    		P1OUT ^= BIT0;
+    		is_int_run = 0;
+    }
+state = LED_med;
     break;
   case LED_med:
     CCR0=25098;
+	if (is_int_run) 
+	    {
+    		P1OUT ^= BIT0;
+    		is_int_run = 0;
+    	}
     state = LED_high; // LED back on on next round
     break;
   case LED_high:
-    CCR0=15098
-    state = LED_OFF3S;
+    CCR0=15098;
+	if (is_int_run) 
+	  {
+    		P1OUT ^= BIT0;
+    		is_int_run = 0;
+      }
+   
 state= LED_low;
    break;
-    while(1) {
+  /**  while(1) {
 
 	 if (is_int_run) {
     		P1OUT ^= BIT0;
     		is_int_run = 0;
     	}
-    }
+    */ }
 
 }
 
